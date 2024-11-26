@@ -1,3 +1,5 @@
+use std::hash::Hash;
+
 use crate::instruction::*;
 use crate::memory::*;
 use smallvec::SmallVec;
@@ -10,7 +12,7 @@ pub enum DecodeError {}
 
 pub trait Decoder {
     type Ptr: Pointer;
-    type DecodeState;
+    type DecodeState: Eq + Hash;
     type Opcode: Opcode;
     type Operand: Operand;
     const OPERAND_TYPICAL_COUNT: usize = 4;
@@ -23,6 +25,7 @@ pub trait Decoder {
     ) -> Result<
         (
             Self::DecodeState,
+            Self::Ptr,
             Instruction<Self::Opcode, Self::Operand, { Self::OPERAND_TYPICAL_COUNT }>,
         ),
         DecodeError,

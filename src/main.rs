@@ -8,11 +8,13 @@ pub mod front;
 pub mod ir;
 pub mod chase;
 pub mod leg;
+pub mod util;
 
 pub mod prelude {
     pub use crate::front::*;
     pub use crate::instruction::*;
     pub use crate::memory::*;
+    pub use crate::util::*;
 }
 
 fn main() {

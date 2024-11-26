@@ -51,6 +51,7 @@ impl Decoder for Legv8Decoder {
         ) -> Result<
             (
                 Self::DecodeState,
+                Self::Ptr,
                 Instruction<Self::Opcode, Self::Operand, { Self::OPERAND_TYPICAL_COUNT }>,
             ),
             DecodeError,
